@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+{% if pro == None %}
+<form class="d-flex" method="POST">
+    {% csrf_token %}
+    <input class="me-2 border border-dark" type="search" name="q" placeholder="Search" aria-label="Search" style="height:50px; width:50%">
+    <button class="btn btn-outline-dark" type="submit">Search</button>
+</form>
+{% else %}
+<div class="container-fluid">
+    <h3 class="text-center">You have searched for {{query}}</h3><br>
+                <div class="row">
+                    {% for i in pro %}
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+
+                        <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                            <div class="popular-img">
+                                <img src="{{i.image.url}}" alt="" height="250px">
+                                <div class="img-cap">
+                                    <span>{{i.name}}</span>
+<!--                                    <p>{{i.description}}</p>-->
+                                </div>
+                                <div class="favorit-items">
+                                 <a href="{% url 'shop:product_details' i.id %}" class="btn">Shop Now</a>
+                             </div>
+                               <p>{{i.description}}</p>
+                         </div>
+                     </div>
+                 </div>
+                    {% empty %}
+                    <h3 class=" mx-auto"><b>No results found</b></h3>
+
+
+{% endfor %}
+ {% endif %}
+    </div>
+</div>
+{% endblock %}
