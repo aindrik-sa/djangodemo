@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>Login Page</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="mb-3">
+    <label  class="form-label">username</label>
+    <input type="text" class="form-control"  name="u" placeholder="enter username" >
+
+  </div>
+  <div class="mb-3">
+    <label  class="form-label">Password</label>
+    <input type="password" class="form-control"  name="p" placeholder="enter password" >
+  </div>
+
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</table>
+{% endblock %}
