@@ -2,33 +2,59 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<img src="{{cat.image.url}}" class="rounded mx-auto d-block mt-5" alt="..." height="400px">
-<h2 class="text-center mt-3">{{cat.name}}</h2>
-<h4 class="mt-4 text-center text-warning">{{cat.description}}</h4>
 
-   <div class="popular-items pt-50">
-            <div class="container-fluid">
-                <div class="row">
-                    {% for i in product %}
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+<div class="container-fluid px-4 py-4">
+    <!-- Category header -->
+    <div class="text-center mb-4">
+        {% if cat.image %}
+        <img src="{{cat.image.url}}"
+             class="rounded-3 mx-auto d-block mb-3"
+             alt="{{cat.name}}"
+             style="width: 100%; max-width: 900px; height: 300px; object-fit: cover;">
+        {% else %}
+        <div class="rounded-3 mx-auto mb-3 d-flex align-items-center justify-content-center bg-light text-muted"
+             style="width: 100%; max-width: 900px; height: 300px;">
+            <i class="fas fa-image fa-3x"></i>
+        </div>
+        {% endif %}
+        <h2 class="fw-bold mt-2">{{cat.name}}</h2>
+        <h5 class="text-warning">{{cat.description}}</h5>
+    </div>
 
-                        <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                            <div class="popular-img">
-                                <img src="{{i.image.url}}" alt="" height="250px">
-                                <div class="img-cap">
-                                    <span>{{i.name}}</span>
-<!--                                    <p>{{i.description}}</p>-->
-                                </div>
-                                <div class="favorit-items">
-                                 <a href="{% url 'shop:product_details' i.id %}" class="btn">Shop Now</a>
-                             </div>
-                               <p>{{i.description}}</p>
-                         </div>
-                     </div>
-                 </div>
-
-{% endfor %}
+    <!-- Products grid -->
+    <div class="popular-items pt-3">
+        <div class="row g-4">
+            {% for i in product %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="single-popular-items mb-4 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                    <div class="popular-img">
+                        {% if i.image %}
+                        <img src="{{i.image.url}}"
+                             alt="{{i.name}}"
+                             style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                        {% else %}
+                        <div class="d-flex align-items-center justify-content-center bg-light text-muted"
+                             style="width: 100%; height: 260px;">
+                            <i class="fas fa-image fa-2x"></i>
+                        </div>
+                        {% endif %}
+                        <div class="img-cap">
+                            <span>{{i.name}}</span>
+                        </div>
+                        <div class="favorit-items">
+                            <a href="{% url 'shop:product_details' i.id %}" class="btn">Shop Now</a>
+                        </div>
+                        <p class="mt-2">{{i.description}}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">No products found in this category.</p>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
-</div>
+
 {% endblock %}

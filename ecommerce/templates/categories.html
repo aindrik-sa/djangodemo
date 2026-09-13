@@ -2,110 +2,115 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-        <div class="container-fluid">
-            <div class="slider-area">
-                <!-- Mobile Device Show Menu-->
-                <div class="header-right2 d-flex align-items-center">
-                    <!-- Social -->
-                    <div class="header-social  d-block d-md-none">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                    </div>
-                    <!-- Search Box -->
-                    <div class="search d-block d-md-none" >
-                        <ul class="d-flex align-items-center">
-                            <li class="mr-15">
-                                <div class="nav-search search-switch">
-                                    <i class="ti-search"></i>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="card-stor">
 
-                                   <img src="assets/img/gallery/card.svg" alt="">
-                                    <span>0</span>
-                                </div>
-                            </li>
-                        </ul>
+<!-- Hero Slider -->
+<div class="container-fluid p-0">
+    <div class="slider-area">
+        <!-- Mobile menu extras -->
+        <div class="header-right2 d-flex align-items-center">
+            <div class="header-social d-block d-md-none">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="https://bit.ly/sai4ull"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+            <div class="search d-block d-md-none">
+                <ul class="d-flex align-items-center">
+                    <li class="mr-15">
+                        <div class="nav-search search-switch">
+                            <i class="ti-search"></i>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="slider-active dot-style">
+            <!-- Slide 1 -->
+            <div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-9">
+                            <div class="hero__caption">
+                                <h1>New Arrivals<br>This Season</h1>
+                                <a href="{% url 'shop:categories' %}" class="btn">Shop Now</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- /End mobile  Menu-->
-
-                <div class="slider-active dot-style">
-                    <!-- Single -->
-                    <div class="single-slider slider-bg1 hero-overly slider-height d-flex align-items-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>fashion<br>changing<br>always</h1>
-                                        <a href="shop.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="single-slider slider-bg2 hero-overly slider-height d-flex align-items-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-9">
+                            <div class="hero__caption">
+                                <h1>Style That<br>Speaks Louder</h1>
+                                <a href="{% url 'shop:categories' %}" class="btn">Shop Now</a>
                             </div>
                         </div>
                     </div>
-                    <!-- Single -->
-                    <div class="single-slider slider-bg2 hero-overly slider-height d-flex align-items-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>fashion<br>changing<br>always</h1>
-                                        <a href="shop.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Single -->
-                    <div class="single-slider slider-bg3 hero-overly slider-height d-flex align-items-center">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-xl-8 col-lg-9">
-                                    <!-- Hero Caption -->
-                                    <div class="hero__caption">
-                                        <h1>fashion<br>changing<br>always</h1>
-                                        <a href="shop.html" class="btn">Shop Now</a>
-                                    </div>
-                                </div>
+                </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="single-slider slider-bg3 hero-overly slider-height d-flex align-items-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-lg-9">
+                            <div class="hero__caption">
+                                <h1>Fashion Is<br>Always Changing</h1>
+                                <a href="{% url 'shop:categories' %}" class="btn">Shop Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-<div class="container mt-3 p-3" style="margin-bottom:100px;">
-    <h1 class="text-center fs-4"> <b>Our Collections </b></h1>
-    <p style="text-align:justify;line-height:2;font-size:20px;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
-       </div>
-    <div class="popular-items pt-50">
-            <div class="container-fluid">
-                <div class="row">
-                    {% for i in cat %}
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-
-                        <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                            <div class="popular-img">
-                                <img src="{{i.image.url}}" alt="" height="250px" width="175px">
-                                <div class="img-cap">
-                                    <span>{{i.name}}</span>
-<!--                                    <p>{{i.description}}</p>-->
-                                </div>
-                                <div class="favorit-items">
-                                 <a href="{% url 'shop:products' i.id %}" class="btn">Details</a>
-                             </div>
-                               <p>{{i.description}}</p>
-                         </div>
-                     </div>
-                 </div>
-
-{% endfor %}
     </div>
 </div>
+
+<!-- Collections section -->
+<div class="container mt-4 mb-3">
+    <h1 class="text-center fs-4"><b>Our Collections</b></h1>
+    <p style="text-align:justify; line-height:2; font-size:18px;">
+        Discover our curated range of fashion categories — from everyday essentials to statement pieces.
+        Browse and find the style that fits your personality.
+    </p>
+</div>
+
+<div class="popular-items pt-30">
+    <div class="container-fluid px-4">
+        <div class="row g-4">
+            {% for i in cat %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="single-popular-items mb-4 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                    <div class="popular-img">
+                        {% if i.image %}
+                        <img src="{{i.image.url}}"
+                             alt="{{i.name}}"
+                             style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                        {% else %}
+                        <div class="d-flex align-items-center justify-content-center bg-light text-muted"
+                             style="width: 100%; height: 260px;">
+                            <i class="fas fa-image fa-2x"></i>
+                        </div>
+                        {% endif %}
+                        <div class="img-cap">
+                            <span>{{i.name}}</span>
+                        </div>
+                        <div class="favorit-items">
+                            <a href="{% url 'shop:products' i.id %}" class="btn">Details</a>
+                        </div>
+                        <p class="mt-2">{{i.description}}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">No categories available yet.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}

@@ -3,40 +3,58 @@
 {% load static %}
 {% block content %}
 
-
-{% if pro == None %}
-<form class="d-flex" method="POST">
-    {% csrf_token %}
-    <input class="me-2 border border-dark" type="search" name="q" placeholder="Search" aria-label="Search" style="height:50px; width:50%">
-    <button class="btn btn-outline-dark" type="submit">Search</button>
-</form>
-{% else %}
-<div class="container-fluid">
-    <h3 class="text-center">You have searched for {{query}}</h3><br>
-                <div class="row">
-                    {% for i in pro %}
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-
-                        <div class="single-popular-items mb-50 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-                            <div class="popular-img">
-                                <img src="{{i.image.url}}" alt="" height="250px">
-                                <div class="img-cap">
-                                    <span>{{i.name}}</span>
-<!--                                    <p>{{i.description}}</p>-->
-                                </div>
-                                <div class="favorit-items">
-                                 <a href="{% url 'shop:product_details' i.id %}" class="btn">Shop Now</a>
-                             </div>
-                               <p>{{i.description}}</p>
-                         </div>
-                     </div>
-                 </div>
-                    {% empty %}
-                    <h3 class=" mx-auto"><b>No results found</b></h3>
-
-
-{% endfor %}
- {% endif %}
+<div class="container py-5">
+    <!-- Search form — always visible at top -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-7">
+            <form class="d-flex gap-2" method="POST" action="{% url 'search:search_products' %}">
+                {% csrf_token %}
+                <input class="form-control form-control-lg" type="search" name="q"
+                       placeholder="Search for products..."
+                       value="{{ query|default:'' }}"
+                       aria-label="Search">
+                <button class="btn btn-primary px-4 fw-semibold" type="submit">Search</button>
+            </form>
+        </div>
     </div>
+
+    {% if pro is not None %}
+        {% if pro %}
+        <h4 class="text-center mb-4">Results for "<strong>{{ query }}</strong>"</h4>
+        <div class="row g-4">
+            {% for i in pro %}
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="single-popular-items mb-4 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
+                    <div class="popular-img">
+                        {% if i.image %}
+                        <img src="{{ i.image.url }}"
+                             alt="{{ i.name }}"
+                             style="width: 100%; height: 260px; object-fit: cover; display: block;">
+                        {% else %}
+                        <div class="d-flex align-items-center justify-content-center bg-light text-muted"
+                             style="width: 100%; height: 260px;">
+                            <i class="fas fa-image fa-2x"></i>
+                        </div>
+                        {% endif %}
+                        <div class="img-cap">
+                            <span>{{ i.name }}</span>
+                        </div>
+                        <div class="favorit-items">
+                            <a href="{% url 'shop:product_details' i.id %}" class="btn">Shop Now</a>
+                        </div>
+                        <p class="mt-2">{{ i.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-4">
+            <p class="fs-5 text-muted">No results found for "<strong>{{ query }}</strong>".</p>
+        </div>
+        {% endif %}
+    {% endif %}
+
 </div>
+
 {% endblock %}
